@@ -71,6 +71,7 @@
     this.onViewportUpdate = false;
     this.onElementUpdate = false;
     this.onUpdate = false;
+    this.onPause = false;
 
     this.addElement = function(toAdd) {
       //FIX handle error
@@ -99,6 +100,9 @@
       this.onViewportUpdate = callbacks.onViewportUpdate;
       this.onElementUpdate = callbacks.onElementUpdate;
       this.onUpdate = callbacks.onUpdate;
+      this.onPause = callbacks.onPause;
+
+      return this;
     };
 
     this.getScrollY = function() {
@@ -163,6 +167,9 @@
 
       //Clear intervals
       clearOneInterval("dimentionsInterval");
+
+      //Callback
+      this.onPause && this.onPause.call(this);
 
       return this;
     };
