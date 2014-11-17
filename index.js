@@ -76,11 +76,13 @@
     this.addElement = function(toAdd) {
       //FIX handle error
       if(!toAdd.name) {
+        console.error("DOMObserver: Error. Unable to add element. No element name given");
         return;
       }
 
       //FIX handle error
       if(!isDOMElement(toAdd.element)) { 
+        console.error("DOMObserver: Error. Unable to add element. Invalid element to add, please provide a DOM object");
         return;
       }
 
@@ -94,6 +96,10 @@
 
       return this;
     };
+
+    this.getElements = function() {
+      return elementsToObserve;
+    }
 
     this.addCallbacks = function(callbacks) {
       this.onScrollYUpdate = callbacks.onScrollYUpdate;
@@ -118,7 +124,7 @@
     };
 
     this.getPropertyValue = function(elementName, propertyName) {
-      if(_.isEmpty(latestElementDimentions[elementName])) {
+      if(_.isEmpty(currentElementDimentions[elementName])) {
         return;
       }
 
