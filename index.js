@@ -99,7 +99,7 @@
 
     this.getElements = function() {
       return elementsToObserve;
-    }
+    };
 
     this.addCallbacks = function(callbacks) {
       this.onScrollYUpdate = callbacks.onScrollYUpdate;
@@ -178,6 +178,10 @@
       this.onPause && this.onPause.call(this);
 
       return this;
+    };
+
+    this.isWorking = function() {
+      return isWorking;
     };
 
     //Utils
