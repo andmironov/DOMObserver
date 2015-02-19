@@ -1,3 +1,7 @@
+var isEqual = require('lodash.isequal');
+var forEach = require('lodash.foreach');
+var isEmpty = require('lodash.isempty');
+
 (function(window, document) {
   function DOMObserver(options) {
 
@@ -81,12 +85,12 @@
       }
 
       //FIX handle error
-      if(!isDOMElement(toAdd.element)) { 
+      if(!isDOMElement(toAdd.element)) {
         console.error("DOMObserver: Error. Unable to add element. Invalid element to add, please provide a DOM object");
         return;
       }
 
-      if(_.isEmpty(elementsToObserve)) toStart = true;
+      if(isEmpty(elementsToObserve)) toStart = true;
 
       if (!elementsToObserve.hasOwnProperty(toAdd.name)) {
         elementsToObserve[toAdd.name] = toAdd.element;
@@ -124,7 +128,7 @@
     };
 
     this.getPropertyValue = function(elementName, propertyName) {
-      if(_.isEmpty(currentElementDimentions[elementName])) {
+      if(isEmpty(currentElementDimentions[elementName])) {
         return;
       }
 
@@ -153,11 +157,11 @@
       //FIX one func reflows another
       onScroll();
       onResize();
-      
+
       //Add listeners
       window.addEventListener('resize', onResize, false);
       window.addEventListener('scroll', onScroll, false);
-      
+
       //Set intervals
       setOneInterval("dimentionsInterval");
 
@@ -186,17 +190,17 @@
 
     //Utils
     function handleElementDimentions() {
-      if(_.isEmpty(elementsToObserve)) {
+      if(isEmpty(elementsToObserve)) {
         return;
       }
 
-      _.forEach(elementsToObserve, function(value, key) {
+      forEach(elementsToObserve, function(value, key) {
         latestElementDimentions[key] = getElementDimentions(value);
       });
 
-      if(_.isEqual(latestElementDimentions, currentElementDimentions)) {
+      if(isEqual(latestElementDimentions, currentElementDimentions)) {
         return;
-      } 
+      }
 
       currentElementDimentions = _.clone(latestElementDimentions);
 

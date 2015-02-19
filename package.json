@@ -1,0 +1,27 @@
+{
+  "name": "DOMObserver",
+  "version": "0.0.1",
+  "description": "DOMObserver =========== Debounces the scroll and resize events and runs a callback inside of rAF when they update, providing the scrollY and viewPort object with width and height properties",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andmironov/DOMObserver.git"
+  },
+  "author": "Andrei Mironov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andmironov/DOMObserver/issues"
+  },
+  "homepage": "https://github.com/andmironov/DOMObserver",
+  "devDependencies": {
+    "browserify": "^8.1.3"
+  },
+  "dependencies": {
+    "lodash.foreach": "^3.0.1",
+    "lodash.isempty": "^3.0.0",
+    "lodash.isequal": "^3.0.0"
+  }
+}
