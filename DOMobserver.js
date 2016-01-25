@@ -1,8 +1,8 @@
 var isEqual = require('lodash.isequal');
 var forEach = require('lodash.foreach');
 var isEmpty = require('lodash.isempty');
+var cloneObject = require('lodash.clone');
 
-(function(window, document) {
   function DOMObserver(options) {
 
     //Init
@@ -29,12 +29,16 @@ var isEmpty = require('lodash.isempty');
 
     //Event handlers
     function onScroll() {
+      getScroll();
+      requestTick("scrollY");
+    };
+
+    function getScroll() {
       latestScrollY = window.pageYOffset || document.documentElement.scrollTop;
       if (latestScrollY === currentScrollY)  {
         return;
       }
       currentScrollY = latestScrollY;
-      requestTick("scrollY");
     };
 
     function onResize() {
@@ -94,7 +98,9 @@ var isEmpty = require('lodash.isempty');
 
       if (!elementsToObserve.hasOwnProperty(toAdd.name)) {
         elementsToObserve[toAdd.name] = toAdd.element;
+        getScroll();
 
+        handleElementDimentions();
         if(toStart) this.start();
       }
 
@@ -202,8 +208,7 @@ var isEmpty = require('lodash.isempty');
         return;
       }
 
-      currentElementDimentions = _.clone(latestElementDimentions);
-
+      currentElementDimentions = cloneObject(latestElementDimentions);
       requestTick("dimensions");
     };
 
@@ -239,7 +244,5 @@ var isEmpty = require('lodash.isempty');
     };
   }
 
-  //Export
-  window.DOMObserver = DOMObserver;
-
-}(window, document));
+//Export
+module.exports = DOMObserver;
