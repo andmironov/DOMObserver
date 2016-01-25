@@ -6,7 +6,7 @@ Also accepts DOM elements to track changes of their width, height, offsetTop, of
 
 Quick example
 
-```
+```javascript
 //Add observer
 var observer = new DOMObserver();
 
