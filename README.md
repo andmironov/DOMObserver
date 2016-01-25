@@ -35,10 +35,10 @@ function onUpdate() {
   viewportHeight = observer.getViewport().height;
 
   //Fire a function when the #container is in viewport on 50% of it's height
-  if((containerOffsetTop - scrollY) < (viewportHeight - (containerHeight/2))) doSmething();
+  if((containerOffsetTop - scrollY) < (viewportHeight - (containerHeight/2))) doSomething();
 }
 
-function doSmething() {
+function doSomething() {
   //Do whatever you want;
   return;
 }
